@@ -16,7 +16,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 DBCon.SQLconn con = new DBCon.SQLconn();
-con.connect();
+con.connect(); //instancia de clase de DB
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
