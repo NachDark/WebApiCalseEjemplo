@@ -1,3 +1,6 @@
+using System.Reflection.PortableExecutable;
+using WebSocket_ASPNet;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,6 +24,14 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.UseWebSockets();                            // Aceptar WebSockets
+app.Map("/ws", b => {                           //Mapping the ws route
+    b.UseMiddleware<MiControladorDeWebSockets>();  // Controlador para WebSockets
+});
+
+
 app.MapControllers();
 
 app.Run();
+
+ 

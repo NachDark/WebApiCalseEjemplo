@@ -26,7 +26,7 @@ namespace WebApiCalseEjemplo.Controllers
         public int Get()
         {
             SQLconn t = new DBCon.SQLconn();
-            t.connect();
+           // t.connect();
             
             return t.TestDB().Tables[0].Rows.Count;
         }

@@ -15,8 +15,9 @@ namespace TestDB
             t.connect();
             t.TestDB();
             
+            
             Assert.AreEqual(1, t.TestDB().Tables[0].Rows.Count);
-            System.Diagnostics.Trace.WriteLine(t.connec.ConnectionString);
+            System.Diagnostics.Trace.WriteLine( SQLconn.connec.ConnectionString);
 
         }
 
