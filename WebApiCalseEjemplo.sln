@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBCon", "DBCon\DBCon.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{5AE3D93E-CEED-4551-BE97-5067695820A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APICaller", "APICaller\APICaller.csproj", "{84B67828-65DC-4FE2-899D-26AC0548E35F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APICaller", "APICaller\APICaller.csproj", "{84B67828-65DC-4FE2-899D-26AC0548E35F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUtils", "WebUtils\WebUtils.csproj", "{5B6ED9FE-8E77-4031-8323-0C4D3F6A231A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{84B67828-65DC-4FE2-899D-26AC0548E35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84B67828-65DC-4FE2-899D-26AC0548E35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84B67828-65DC-4FE2-899D-26AC0548E35F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B6ED9FE-8E77-4031-8323-0C4D3F6A231A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B6ED9FE-8E77-4031-8323-0C4D3F6A231A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B6ED9FE-8E77-4031-8323-0C4D3F6A231A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B6ED9FE-8E77-4031-8323-0C4D3F6A231A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

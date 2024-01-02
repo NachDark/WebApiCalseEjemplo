@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DBCon\DBCon.csproj" />
+    <ProjectReference Include="..\WebUtils\WebUtils.csproj" />
   </ItemGroup>
 
 </Project>

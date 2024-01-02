@@ -24,12 +24,12 @@ namespace WebSocket_ASPNet
 
             // Es una petición socket, ver que nos mandan
             var ct = context.RequestAborted;
-            using (var socket = await context.WebSockets.AcceptWebSocketAsync()) //
+            using (var socket = await context.WebSockets.AcceptWebSocketAsync()) //aceptamos la llamada de WS
             {
                 while (!EndSocket)
                 {
-                    var mensaje = await ReceiveStringAsync(socket, ct);
-                    if (mensaje == null) return;
+                    var mensaje = await ReceiveStringAsync(socket, ct);   //await de recepción 
+                    if (mensaje == null) return; //si el mensaje esta vacio cierra conexion
 
                     // Vamos a inventar dos tipos de mensajes:
                     // 1. Mensajes simples: sólo llega una cadena de texto
