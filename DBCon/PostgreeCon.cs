@@ -37,16 +37,83 @@ namespace DBCon
                 int count = 0;
                 foreach (var itemprop in prop)
                 {
-                   
-                        var tipon = reader.GetPostgresType(count);
-                        Type o = itemprop.PropertyType;
-                        MethodInfo method = reader.GetType().GetMethod("GetFieldValue")
-                                 .MakeGenericMethod(new Type[] { o });
-                    object? r = method.Invoke(reader, new object[] { count });
-                  
 
-                        itemprop.SetValue(DatoInterno, r);
-                 
+                    var tipon = reader.GetPostgresType(count);
+                    Type o = itemprop.PropertyType;
+                    MethodInfo method = reader.GetType().GetMethod("GetFieldValue")
+                             .MakeGenericMethod(new Type[] { o });
+                    object? r = method.Invoke(reader, new object[] { count });
+
+
+                    itemprop.SetValue(DatoInterno, r);
+
+
+                    count++;
+                }
+                result.Add(DatoInterno);
+            }
+            return result;
+        }
+        /// <summary>
+        /// Esta función realiza la consulta sobre una tabla (argumento Tabla), con valores de filtrado asociados a la clase T (argumento datofiltro)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tabla"></param>
+        /// <param name="datofiltro"></param>
+        /// <returns></returns>
+        public List<T> ConsultaTest<T>(string tabla, T datofiltro) where T : new()
+        {
+
+            string consulta = string.Format("Select * from {1}", tabla);
+
+            Type tin = datofiltro.GetType();
+            PropertyInfo[] propcons = tin.GetProperties();
+
+
+
+            string wherecondition = string.Format(" where ");
+            foreach (var itemprop in propcons)
+            {
+
+                var objreaded = itemprop.GetValue(datofiltro);
+                if (objreaded != null)
+                {
+                    if (itemprop.PropertyType == Type.GetType("System.String"))
+                    {
+                        wherecondition = string.Format("{1}  {2}= {3} and", wherecondition, itemprop.Name, objreaded);
+                    }
+                    else
+                    {
+                        wherecondition = string.Format("{1}  {2} = {3} and", itemprop.Name, objreaded);
+                    }
+                }
+            }
+            wherecondition = wherecondition.Substring(0, wherecondition.Length - "and".Length);
+
+
+
+            using var command = dataSource.CreateCommand(consulta );
+            using var reader = command.ExecuteReader();
+            List<T> result = new List<T>();
+
+            while (reader.Read())
+            {
+                T DatoInterno = new T();
+                Type t = DatoInterno.GetType();
+                PropertyInfo[] prop = t.GetProperties();
+                int count = 0;
+                foreach (var itemprop in prop)
+                {
+
+                    var tipon = reader.GetPostgresType(count);
+                    Type o = itemprop.PropertyType;
+                    MethodInfo method = reader.GetType().GetMethod("GetFieldValue")
+                             .MakeGenericMethod(new Type[] { o });
+                    object? r = method.Invoke(reader, new object[] { count });
+
+
+                    itemprop.SetValue(DatoInterno, r);
+
 
                     count++;
                 }
