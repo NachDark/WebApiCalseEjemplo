@@ -36,10 +36,12 @@ namespace TestDB
         [TestMethod]
         public void TestDBSelectFunction()
         {
-
+            //Requisitos de la actividad:
+            //Realizar la consulta con parametros de entrada en formato clase(InventarioSQL),
+            //tener como resultado la lista de los inventarios que coincidan con los filtros definidos en el test
             SQLconn t = new DBCon.SQLconn();
             t.connect(true);
-            Assert.AreEqual(1, t.ConsultaTest<Inventario>("inventario", new Inventario() { codigo = "1234" }));
+            Assert.AreEqual("Orbea", t.ConsultaTest<InventarioSQL>("inventario", new InventarioSQL() { codigo = "1234" }));
 
         }
     }

@@ -19,7 +19,15 @@ namespace DBCon.PostgreDataStruct
         public string? imgbase { get; set; }
         public string? cabezera { get; set; }
     }
+    public class InventarioSQL
+    {
+        public int? id { get; set; }
+        public string? codigo { get; set; }
 
+        public string? nombre { get; set; }
+
+        public string? proveedor { get; set; }
+    }
     public class Inventario {
         public int? id { get; set; }
         public string? codigo { get; set; }
