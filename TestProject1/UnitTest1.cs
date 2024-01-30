@@ -1,5 +1,6 @@
 using DatabaseConnectionCustom.Data;
 using DBCon;
+using DBCon.PostgreDataStruct;
 
 namespace TestDB
 {
@@ -30,6 +31,15 @@ namespace TestDB
             t.connect(true);
             t.TestDB();
             Assert.AreEqual(1, t.TestDB().Tables[0].Rows.Count);
+
+        }
+        [TestMethod]
+        public void TestDBSelectFunction()
+        {
+
+            SQLconn t = new DBCon.SQLconn();
+            t.connect(true);
+            Assert.AreEqual(1, t.ConsultaTest<Inventario>("inventario", new Inventario() { codigo = "1234" }));
 
         }
     }

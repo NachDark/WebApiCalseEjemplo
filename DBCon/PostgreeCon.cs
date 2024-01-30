@@ -21,6 +21,7 @@ namespace DBCon
             dataSource = NpgsqlDataSource.Create(connectionString);
             var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
             dataSourceBuilder.MapComposite<imagen>();
+            dataSourceBuilder.MapComposite<Proveedor>();
             dataSource = dataSourceBuilder.Build();
         }
         public List<T> ConsultaTest<T>(string consulta) where T : new()
@@ -64,7 +65,7 @@ namespace DBCon
         public List<T> ConsultaTest<T>(string tabla, T datofiltro) where T : new()
         {
 
-            string consulta = string.Format("Select * from {1}", tabla);
+            string consulta = string.Format("Select * from {0}", tabla);
 
             Type tin = datofiltro.GetType();
             PropertyInfo[] propcons = tin.GetProperties();
@@ -80,11 +81,11 @@ namespace DBCon
                 {
                     if (itemprop.PropertyType == Type.GetType("System.String"))
                     {
-                        wherecondition = string.Format("{1}  {2}= {3} and", wherecondition, itemprop.Name, objreaded);
+                        wherecondition = string.Format("{0}  {1}= '{2}' and", wherecondition, itemprop.Name, objreaded);
                     }
                     else
                     {
-                        wherecondition = string.Format("{1}  {2} = {3} and", itemprop.Name, objreaded);
+                        wherecondition = string.Format("{0}  {1} = {2} and", itemprop.Name, objreaded);
                     }
                 }
             }
@@ -92,7 +93,7 @@ namespace DBCon
 
 
 
-            using var command = dataSource.CreateCommand(consulta );
+            using var command = dataSource.CreateCommand(consulta + wherecondition);
             using var reader = command.ExecuteReader();
             List<T> result = new List<T>();
 

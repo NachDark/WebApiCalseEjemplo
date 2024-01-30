@@ -41,6 +41,14 @@ namespace DBCon
 
         }
 
+     
+
+        public List<T> ConsultaTest<T>(string sql, T DatosFiltro) where T : new() 
+        {
+            throw new Exception("Aqui debes incluir la función que retorne la lista de clase T, podeis realizarla a traves de Serializado o recorriendo el dataset a traves de AsEnumerable");
+
+        }
+
         public DataSet TestDB()
         {
             DataSet dt = new DataSet();
